@@ -1,0 +1,387 @@
+<html>
+<head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Inter, sans-serif;
+    }
+
+    body {
+      background: #ffffff;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    .container {
+      padding: 24px;
+      padding-bottom: 80px;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .title {
+      font-size: 32px;
+      font-weight: 700;
+      color: #000000;
+      line-height: 1.2;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    label {
+      font-size: 14px;
+      font-weight: 500;
+      color: #333;
+    }
+
+    input[type="text"], input[type="date"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: border-color 0.2s;
+    }
+
+    input[type="text"]:focus, input[type="date"]:focus {
+      outline: none;
+      border-color: #18A0FB;
+    }
+
+    .gradient-presets {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .gradient-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .gradient-option {
+      height: 32px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: transform 0.2s, border-color 0.2s;
+      border: 2px solid transparent;
+      background-size: 100% 100%;
+    }
+
+    .gradient-option:hover {
+      transform: scale(1.02);
+    }
+
+    .gradient-option.selected {
+      border: 2px solid #18A0FB;
+    }
+
+    .custom-colors {
+      background: #F5F5F5;
+      border-radius: 8px;
+      padding: 12px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .color-input {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: white;
+      padding: 8px 12px;
+      border-radius: 6px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      transition: all 0.2s;
+    }
+
+    .color-input:hover {
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .angle-control {
+      background: #F5F5F5;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 16px;
+    }
+
+    .angle-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .angle-value {
+      font-size: 12px;
+      font-weight: 500;
+      color: #666;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      height: 4px;
+      background: #E0E0E0;
+      border-radius: 2px;
+      -webkit-appearance: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      background: #18A0FB;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.1);
+    }
+
+    input[type="color"] {
+      -webkit-appearance: none;
+      padding: 0;
+      width: 24px;
+      height: 24px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    input[type="color"]::-webkit-color-swatch-wrapper {
+      padding: 0;
+    }
+
+    input[type="color"]::-webkit-color-swatch {
+      border: none;
+      border-radius: 4px;
+    }
+
+    .color-input label {
+      font-size: 12px;
+      font-weight: 500;
+      color: #666;
+      margin: 0;
+    }
+
+    .buttons {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 16px 24px;
+      display: flex;
+      gap: 12px;
+      background: #ffffff;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    button {
+      flex: 1;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+
+    .create-btn {
+      background: #18A0FB;
+      color: white;
+    }
+
+    .create-btn:hover {
+      background: #0D8DE3;
+    }
+
+    .cancel-btn {
+      background: #F5F5F5;
+      color: #333;
+    }
+
+    .cancel-btn:hover {
+      background: #E8E8E8;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="content">
+      <h1 class="title">Gradient Cover<br>Creator</h1>
+
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" id="title" placeholder="Enter title">
+      </div>
+
+      <div class="form-group">
+        <label for="subtitle">Subtitle</label>
+        <input type="text" id="subtitle" placeholder="Enter subtitle">
+      </div>
+
+      <div class="form-group">
+        <label for="date">Date</label>
+        <input type="date" id="date">
+      </div>
+
+      <div class="gradient-presets">
+        <label>Select Gradient</label>
+        <div class="gradient-grid">
+          <div class="gradient-option" style="background: linear-gradient(90deg, #1A2980, #26D0CE)" data-color1="#1A2980" data-color2="#26D0CE"></div>
+          <div class="gradient-option" style="background: linear-gradient(90deg, #4B1248, #F0C27B)" data-color1="#4B1248" data-color2="#F0C27B"></div>
+          <div class="gradient-option" style="background: linear-gradient(90deg, #000046, #1CB5E0)" data-color1="#000046" data-color2="#1CB5E0"></div>
+          <div class="gradient-option" style="background: linear-gradient(90deg, #16222A, #3A6073)" data-color1="#16222A" data-color2="#3A6073"></div>
+          <div class="gradient-option" style="background: linear-gradient(90deg, #1F1C2C, #928DAB)" data-color1="#1F1C2C" data-color2="#928DAB"></div>
+          <div class="gradient-option" style="background: linear-gradient(90deg, #2C3E50, #3498DB)" data-color1="#2C3E50" data-color2="#3498DB"></div>
+          <div class="gradient-option" style="background: linear-gradient(90deg, #0F2027, #203A43)" data-color1="#0F2027" data-color2="#203A43"></div>
+          <div class="gradient-option" style="background: linear-gradient(90deg, #23074D, #CC5333)" data-color1="#23074D" data-color2="#CC5333"></div>
+          <div class="gradient-option" style="background: linear-gradient(90deg, #1D4350, #A43931)" data-color1="#1D4350" data-color2="#A43931"></div>
+        </div>
+        <div class="custom-colors">
+          <div class="color-input">
+            <input type="color" id="color1" value="#FF0000">
+            <label for="color1">Start Color</label>
+          </div>
+          <div class="color-input">
+            <input type="color" id="color2" value="#0000FF">
+            <label for="color2">End Color</label>
+          </div>
+        </div>
+        <div class="angle-control">
+          <div class="angle-header">
+            <label for="angle">Gradient Angle</label>
+            <span class="angle-value">90°</span>
+          </div>
+          <input type="range" id="angle" min="0" max="360" value="90" step="1">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <button class="create-btn" id="create">Create</button>
+    <button class="cancel-btn" id="cancel">Cancel</button>
+  </div>
+
+  <script>
+    // 监听来自插件的消息
+    window.onmessage = (event) => {
+      const message = event.data.pluginMessage;
+      if (message.type === 'init') {
+        document.getElementById('title').value = message.fileName;
+      }
+    };
+
+    // 设置默认日期为今天
+    document.getElementById('date').valueAsDate = new Date();
+
+    // 选择渐变
+    let selectedGradient = {
+      color1: "#FF0000",
+      color2: "#0000FF",
+      angle: 90
+    };
+
+    const gradientOptions = document.querySelectorAll('.gradient-option');
+    const color1Input = document.getElementById('color1');
+    const color2Input = document.getElementById('color2');
+    const angleInput = document.getElementById('angle');
+    const angleValue = document.querySelector('.angle-value');
+    
+    // 更新渐变预览
+    function updatePreview(target) {
+      if (target) {
+        const angle = selectedGradient.angle || 90;
+        target.style.background = `linear-gradient(${angle}deg, ${selectedGradient.color1}, ${selectedGradient.color2})`;
+      }
+    }
+
+    // 更新角度显示
+    angleInput.addEventListener('input', (e) => {
+      selectedGradient.angle = parseInt(e.target.value);
+      angleValue.textContent = `${selectedGradient.angle}°`;
+      const selectedOption = document.querySelector('.gradient-option.selected');
+      if (selectedOption) {
+        updatePreview(selectedOption);
+      }
+    });
+    
+    gradientOptions.forEach(option => {
+      option.addEventListener('click', () => {
+        gradientOptions.forEach(opt => opt.classList.remove('selected'));
+        option.classList.add('selected');
+        selectedGradient = {
+          ...selectedGradient,
+          color1: option.dataset.color1,
+          color2: option.dataset.color2
+        };
+        color1Input.value = selectedGradient.color1;
+        color2Input.value = selectedGradient.color2;
+        updatePreview(option);
+      });
+    });
+
+    // 监听自定义颜色变化
+    color1Input.addEventListener('input', (e) => {
+      selectedGradient.color1 = e.target.value;
+      gradientOptions.forEach(opt => opt.classList.remove('selected'));
+      const customPreview = document.querySelector('.gradient-option.custom');
+      updatePreview(customPreview);
+    });
+
+    color2Input.addEventListener('input', (e) => {
+      selectedGradient.color2 = e.target.value;
+      gradientOptions.forEach(opt => opt.classList.remove('selected'));
+      const customPreview = document.querySelector('.gradient-option.custom');
+      updatePreview(customPreview);
+    });
+
+    // 默认选择第一个渐变
+    gradientOptions[0].click();
+
+    document.getElementById('create').onclick = () => {
+      const title = document.getElementById('title').value;
+      const subtitle = document.getElementById('subtitle').value;
+
+      parent.postMessage({
+        pluginMessage: {
+          type: 'create-gradient-cover',
+          title: title || 'Your Title',
+          subtitle: subtitle || 'Your Subtitle',
+          color1: selectedGradient.color1,
+          color2: selectedGradient.color2,
+          angle: selectedGradient.angle
+        }
+      }, '*');
+    };
+
+    document.getElementById('cancel').onclick = () => {
+      parent.postMessage({
+        pluginMessage: {
+          type: 'cancel'
+        }
+      }, '*');
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "lib": ["es6"],
+    "skipLibCheck": true,
+    "strict": true,
+    "typeRoots": ["./node_modules/@figma"]
+  }
+}
