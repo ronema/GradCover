@@ -26,10 +26,10 @@
     }
 
     .title {
-      font-size: 32px;
-      font-weight: 700;
+      font-size: 24px;
+      font-weight: 600;
       color: #000000;
-      line-height: 1.2;
+      margin-bottom: 8px;
     }
 
     .form-group {
@@ -85,33 +85,47 @@
     }
 
     .gradient-option.selected {
-      border: 2px solid #18A0FB;
+      border: 3px solid #18A0FB;
+      box-shadow: 0 0 0 2px rgba(24, 160, 251, 0.3);
     }
 
     .custom-colors {
-      background: #F5F5F5;
-      border-radius: 8px;
-      padding: 12px;
       display: flex;
       gap: 12px;
-      align-items: center;
+      justify-content: space-between;
       margin-bottom: 16px;
     }
 
     .color-input {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      gap: 8px;
       background: white;
-      padding: 8px 12px;
-      border-radius: 6px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-      transition: all 0.2s;
+      padding: 8px;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
 
-    .color-input:hover {
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    .color-input input[type="color"] {
+      -webkit-appearance: none;
+      width: 36px;
+      height: 36px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .color-preview {
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      margin-right: 8px;
+    }
+
+    .gradient-preview {
+      height: 80px;
+      border-radius: 12px;
+      margin: 16px 0;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
     .angle-control {
@@ -156,32 +170,6 @@
       transform: scale(1.1);
     }
 
-    input[type="color"] {
-      -webkit-appearance: none;
-      padding: 0;
-      width: 24px;
-      height: 24px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    input[type="color"]::-webkit-color-swatch-wrapper {
-      padding: 0;
-    }
-
-    input[type="color"]::-webkit-color-swatch {
-      border: none;
-      border-radius: 4px;
-    }
-
-    .color-input label {
-      font-size: 12px;
-      font-weight: 500;
-      color: #666;
-      margin: 0;
-    }
-
     .buttons {
       position: fixed;
       bottom: 0;
@@ -222,12 +210,59 @@
     .cancel-btn:hover {
       background: #E8E8E8;
     }
+
+    .icon-button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s;
+    }
+
+    .icon-button:hover {
+      transform: scale(1.1);
+    }
+
+    .icon-button svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .icon-button path {
+      fill: #333;
+    }
+
+    .random-button {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: #F5F5F5;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      padding: 8px;
+    }
+
+    .random-button:hover {
+      background: #E8E8E8;
+    }
+
+    .random-button svg {
+      width: 20px;
+      height: 20px;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="content">
-      <h1 class="title">Gradient Cover<br>Creator</h1>
+      <h1 class="title">Gradient Cover Creator</h1>
 
       <div class="form-group">
         <label for="title">Title</label>
@@ -236,7 +271,7 @@
 
       <div class="form-group">
         <label for="subtitle">Subtitle</label>
-        <input type="text" id="subtitle" placeholder="Enter subtitle">
+        <input type="text" id="subtitle" placeholder="Please enter your summary">
       </div>
 
       <div class="form-group">
@@ -244,35 +279,40 @@
         <input type="date" id="date">
       </div>
 
+      <div class="form-group">
+        <label for="author">Author</label>
+        <input type="text" id="author" value="Design Team">
+      </div>
+
       <div class="gradient-presets">
         <label>Select Gradient</label>
         <div class="gradient-grid">
-          <div class="gradient-option" style="background: linear-gradient(90deg, #1A2980, #26D0CE)" data-color1="#1A2980" data-color2="#26D0CE"></div>
-          <div class="gradient-option" style="background: linear-gradient(90deg, #4B1248, #F0C27B)" data-color1="#4B1248" data-color2="#F0C27B"></div>
-          <div class="gradient-option" style="background: linear-gradient(90deg, #000046, #1CB5E0)" data-color1="#000046" data-color2="#1CB5E0"></div>
-          <div class="gradient-option" style="background: linear-gradient(90deg, #16222A, #3A6073)" data-color1="#16222A" data-color2="#3A6073"></div>
-          <div class="gradient-option" style="background: linear-gradient(90deg, #1F1C2C, #928DAB)" data-color1="#1F1C2C" data-color2="#928DAB"></div>
-          <div class="gradient-option" style="background: linear-gradient(90deg, #2C3E50, #3498DB)" data-color1="#2C3E50" data-color2="#3498DB"></div>
-          <div class="gradient-option" style="background: linear-gradient(90deg, #0F2027, #203A43)" data-color1="#0F2027" data-color2="#203A43"></div>
-          <div class="gradient-option" style="background: linear-gradient(90deg, #23074D, #CC5333)" data-color1="#23074D" data-color2="#CC5333"></div>
-          <div class="gradient-option" style="background: linear-gradient(90deg, #1D4350, #A43931)" data-color1="#1D4350" data-color2="#A43931"></div>
         </div>
         <div class="custom-colors">
           <div class="color-input">
-            <input type="color" id="color1" value="#FF0000">
-            <label for="color1">Start Color</label>
+            <input type="color" id="color1" value="#4ED4DC">
           </div>
           <div class="color-input">
-            <input type="color" id="color2" value="#0000FF">
-            <label for="color2">End Color</label>
+            <input type="color" id="color2" value="#BB4ACF">
           </div>
+          <div class="color-input">
+            <input type="color" id="color3" value="#C348DB">
+          </div>
+          <div class="color-input">
+            <input type="color" id="color4" value="#5995DA">
+          </div>
+          <button id="randomButton" class="icon-button">
+            <svg t="1734968787827" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6568" width="200" height="200">
+              <path d="M512.128 32a480 480 0 0 0 0 960A479.808 479.808 0 0 0 992 511.936 479.744 479.744 0 0 0 512.128 32zM331.136 688.064L217.728 545.216c-8.768-10.624-0.64-27.008 13.248-27.008h46.272c0.64-49.408 23.104-237.44 302.656-280.64 4.352-0.576 6.144 4.992 2.496 7.488-146.048 84.672-146.048 190.464-147.264 273.728h44.48c13.632 0 21.376 16.256 13.12 26.368L379.392 688a30.592 30.592 0 0 1-48.256 0.064z m462.272-182.336h-46.4c-0.64 50.112-23.104 237.44-302.528 280.704-4.352 0.576-6.272-4.992-2.624-7.488 145.984-84.608 145.984-190.528 147.392-273.856h-44.48c-13.632 0-21.76-16.32-13.12-26.88L644.48 335.36a30.592 30.592 0 0 1 48.128 0l113.536 142.848c8.64 10.56 1.152 26.88-12.736 27.52z" fill="#040000" p-id="6569"></path>
+            </svg>
+          </button>
         </div>
         <div class="angle-control">
           <div class="angle-header">
             <label for="angle">Gradient Angle</label>
-            <span class="angle-value">90°</span>
+            <span class="angle-value">109.6°</span>
           </div>
-          <input type="range" id="angle" min="0" max="360" value="90" step="1">
+          <input type="range" id="angle" min="0" max="360" value="109.6" step="1">
         </div>
       </div>
     </div>
@@ -297,79 +337,218 @@
 
     // 选择渐变
     let selectedGradient = {
-      color1: "#FF0000",
-      color2: "#0000FF",
-      angle: 90
+      color1: "#4ED4DC",
+      color2: "#BB4ACF",
+      color3: "#C348DB",
+      color4: "#5995DA",
+      angle: 109.6
     };
 
-    const gradientOptions = document.querySelectorAll('.gradient-option');
+    // 40种精选渐变色组合库
+    const gradientLibrary = [
+      { color1: '#FF6B6B', color2: '#556270', color3: '#4ECDC4', color4: '#4ECDC4', angle: 45 },
+      { color1: '#F7971E', color2: '#FFD200', color3: '#FF9966', color4: '#FF9966', angle: 60 },
+      { color1: '#00C6FF', color2: '#0072FF', color3: '#0051FF', color4: '#0051FF', angle: 90 },
+      { color1: '#FC466B', color2: '#3F5EFB', color3: '#3F5EFB', color4: '#3F5EFB', angle: 120 },
+      { color1: '#A8E6CF', color2: '#DCEDC1', color3: '#FFD3B6', color4: '#FFD3B6', angle: 30 },
+      { color1: '#FFD93D', color2: '#FF8E3C', color3: '#FF4949', color4: '#FF4949', angle: 75 },
+      { color1: '#6DD5FA', color2: '#2980B9', color3: '#2980B9', color4: '#2980B9', angle: 90 },
+      { color1: '#FF5F6D', color2: '#FFC371', color3: '#FFC371', color4: '#FFC371', angle: 45 },
+      { color1: '#36D1DC', color2: '#5B86E5', color3: '#5B86E5', color4: '#5B86E5', angle: 60 },
+      { color1: '#CB356B', color2: '#BD3F32', color3: '#BD3F32', color4: '#BD3F32', angle: 90 },
+      { color1: '#1FA2FF', color2: '#12D8FA', color3: '#A6FFCB', color4: '#A6FFCB', angle: 120 },
+      { color1: '#FF0099', color2: '#493240', color3: '#493240', color4: '#493240', angle: 30 },
+      { color1: '#004FF9', color2: '#FFF94C', color3: '#FFF94C', color4: '#FFF94C', angle: 75 },
+      { color1: '#F4C4F3', color2: '#FC67FA', color3: '#FC67FA', color4: '#FC67FA', angle: 90 },
+      { color1: '#00F260', color2: '#0575E6', color3: '#0575E6', color4: '#0575E6', angle: 45 },
+      { color1: '#F857A6', color2: '#FF5858', color3: '#FF5858', color4: '#FF5858', angle: 60 },
+      { color1: '#4776E6', color2: '#8E54E9', color3: '#8E54E9', color4: '#8E54E9', angle: 90 },
+      { color1: '#FFE259', color2: '#FFA751', color3: '#FFA751', color4: '#FFA751', angle: 120 },
+      { color1: '#FF3CAC', color2: '#784BA0', color3: '#2B86C5', color4: '#2B86C5', angle: 30 },
+      { color1: '#FF9A9E', color2: '#FAD0C4', color3: '#FAD0C4', color4: '#FAD0C4', angle: 75 },
+      { color1: '#A8CABA', color2: '#5D4157', color3: '#5D4157', color4: '#5D4157', angle: 90 },
+      { color1: '#FF758C', color2: '#FF7EB3', color3: '#FF7EB3', color4: '#FF7EB3', angle: 45 },
+      { color1: '#08AEEA', color2: '#2AF598', color3: '#2AF598', color4: '#2AF598', angle: 60 },
+      { color1: '#FEE140', color2: '#FA709A', color3: '#FA709A', color4: '#FA709A', angle: 90 },
+      { color1: '#5433FF', color2: '#20BDFF', color3: '#A5FECB', color4: '#A5FECB', angle: 120 },
+      { color1: '#799F0C', color2: '#ACBB78', color3: '#ACBB78', color4: '#ACBB78', angle: 30 },
+      { color1: '#00B4DB', color2: '#0083B0', color3: '#0083B0', color4: '#0083B0', angle: 75 },
+      { color1: '#FBAB7E', color2: '#F7CE68', color3: '#F7CE68', color4: '#F7CE68', angle: 90 },
+      { color1: '#85FFBD', color2: '#FFFB7D', color3: '#FFFB7D', color4: '#FFFB7D', angle: 45 },
+      { color1: '#FF3F3F', color2: '#FF9B9B', color3: '#FF9B9B', color4: '#FF9B9B', angle: 60 },
+      { color1: '#2193B0', color2: '#6DD5ED', color3: '#6DD5ED', color4: '#6DD5ED', angle: 90 },
+      { color1: '#FFB88C', color2: '#DE6262', color3: '#DE6262', color4: '#DE6262', angle: 120 },
+      { color1: '#B2FEFA', color2: '#0ED2F7', color3: '#0ED2F7', color4: '#0ED2F7', angle: 30 },
+      { color1: '#FA8BFF', color2: '#2BD2FF', color3: '#2BFF88', color4: '#2BFF88', angle: 75 },
+      { color1: '#FF9A9E', color2: '#FECFEF', color3: '#FECFEF', color4: '#FECFEF', angle: 90 },
+      { color1: '#43E97B', color2: '#38F9D7', color3: '#38F9D7', color4: '#38F9D7', angle: 45 },
+      { color1: '#FA709A', color2: '#FEE140', color3: '#FEE140', color4: '#FEE140', angle: 60 },
+      { color1: '#4FACFE', color2: '#00F2FE', color3: '#00F2FE', color4: '#00F2FE', angle: 90 },
+      { color1: '#F83600', color2: '#F9D423', color3: '#F9D423', color4: '#F9D423', angle: 120 },
+      { color1: '#00DBDE', color2: '#FC00FF', color3: '#FC00FF', color4: '#FC00FF', angle: 30 }
+    ];
+
+    // 默认的渐变预设（使用前9个）
+    const defaultGradients = gradientLibrary.slice(0, 9);
+
+    // 从渐变库中随机选择9个不重复的渐变
+    function getRandomGradients() {
+      const shuffled = [...gradientLibrary].sort(() => 0.5 - Math.random());
+      return shuffled.slice(0, 9);
+    }
+
+    // 更新渐变预设
+    function updateGradientPresets() {
+      const gradientGrid = document.querySelector('.gradient-grid');
+      const randomGradients = getRandomGradients();
+      gradientGrid.innerHTML = '';
+      
+      randomGradients.forEach(gradient => {
+        const gradientOption = document.createElement('div');
+        gradientOption.className = 'gradient-option';
+        gradientOption.style.background = `linear-gradient(${gradient.angle}deg, 
+          ${gradient.color1}, 
+          ${gradient.color2},
+          ${gradient.color3},
+          ${gradient.color4})`;
+        gradientOption.addEventListener('click', () => {
+          document.querySelectorAll('.gradient-option').forEach(opt => opt.classList.remove('selected'));
+          gradientOption.classList.add('selected');
+          selectedGradient = gradient;
+          
+          // 更新颜色输入
+          document.getElementById('color1').value = gradient.color1;
+          document.getElementById('color2').value = gradient.color2;
+          document.getElementById('color3').value = gradient.color3;
+          document.getElementById('color4').value = gradient.color4;
+          
+          // 更新角度滑块和显示值
+          document.getElementById('angle').value = gradient.angle;
+          document.querySelector('.angle-value').textContent = `${gradient.angle}°`;
+          
+          updatePreview();
+        });
+        gradientGrid.appendChild(gradientOption);
+      });
+    }
+
+    // 添加随机按钮点击事件
+    document.getElementById('randomButton').addEventListener('click', updateGradientPresets);
+
+    // 初始化默认渐变预设
+    window.addEventListener('load', () => {
+      const gradientGrid = document.querySelector('.gradient-grid');
+      defaultGradients.forEach(gradient => {
+        const gradientOption = document.createElement('div');
+        gradientOption.className = 'gradient-option';
+        gradientOption.style.background = `linear-gradient(${gradient.angle}deg, 
+          ${gradient.color1}, 
+          ${gradient.color2},
+          ${gradient.color3},
+          ${gradient.color4})`;
+        gradientOption.addEventListener('click', () => {
+          document.querySelectorAll('.gradient-option').forEach(opt => opt.classList.remove('selected'));
+          gradientOption.classList.add('selected');
+          selectedGradient = gradient;
+          
+          // 更新颜色输入
+          document.getElementById('color1').value = gradient.color1;
+          document.getElementById('color2').value = gradient.color2;
+          document.getElementById('color3').value = gradient.color3;
+          document.getElementById('color4').value = gradient.color4;
+          
+          // 更新角度滑块和显示值
+          document.getElementById('angle').value = gradient.angle;
+          document.querySelector('.angle-value').textContent = `${gradient.angle}°`;
+          
+          updatePreview();
+        });
+        gradientGrid.appendChild(gradientOption);
+      });
+      
+      // 默认选中第一个渐变
+      const firstOption = gradientGrid.firstChild;
+      if (firstOption) {
+        firstOption.click();
+      }
+    });
+
     const color1Input = document.getElementById('color1');
     const color2Input = document.getElementById('color2');
+    const color3Input = document.getElementById('color3');
+    const color4Input = document.getElementById('color4');
     const angleInput = document.getElementById('angle');
     const angleValue = document.querySelector('.angle-value');
     
     // 更新渐变预览
-    function updatePreview(target) {
-      if (target) {
-        const angle = selectedGradient.angle || 90;
-        target.style.background = `linear-gradient(${angle}deg, ${selectedGradient.color1}, ${selectedGradient.color2})`;
-      }
+    function updatePreview() {
+      const gradient = `linear-gradient(${selectedGradient.angle}deg, 
+        ${selectedGradient.color1}, 
+        ${selectedGradient.color2},
+        ${selectedGradient.color3},
+        ${selectedGradient.color4})`;
+      
+      document.querySelector('.gradient-preview').style.background = gradient;
     }
 
     // 更新角度显示
     angleInput.addEventListener('input', (e) => {
       selectedGradient.angle = parseInt(e.target.value);
       angleValue.textContent = `${selectedGradient.angle}°`;
+      
+      // 更新选中的渐变预设显示
       const selectedOption = document.querySelector('.gradient-option.selected');
       if (selectedOption) {
-        updatePreview(selectedOption);
+        selectedOption.style.background = `linear-gradient(${selectedGradient.angle}deg, 
+          ${selectedGradient.color1}, 
+          ${selectedGradient.color2},
+          ${selectedGradient.color3},
+          ${selectedGradient.color4})`;
       }
+      
+      updatePreview();
     });
     
-    gradientOptions.forEach(option => {
-      option.addEventListener('click', () => {
-        gradientOptions.forEach(opt => opt.classList.remove('selected'));
-        option.classList.add('selected');
-        selectedGradient = {
-          ...selectedGradient,
-          color1: option.dataset.color1,
-          color2: option.dataset.color2
-        };
-        color1Input.value = selectedGradient.color1;
-        color2Input.value = selectedGradient.color2;
-        updatePreview(option);
-      });
-    });
-
     // 监听自定义颜色变化
     color1Input.addEventListener('input', (e) => {
       selectedGradient.color1 = e.target.value;
-      gradientOptions.forEach(opt => opt.classList.remove('selected'));
-      const customPreview = document.querySelector('.gradient-option.custom');
-      updatePreview(customPreview);
+      document.querySelectorAll('.gradient-option').forEach(opt => opt.classList.remove('selected'));
+      updatePreview();
     });
 
     color2Input.addEventListener('input', (e) => {
       selectedGradient.color2 = e.target.value;
-      gradientOptions.forEach(opt => opt.classList.remove('selected'));
-      const customPreview = document.querySelector('.gradient-option.custom');
-      updatePreview(customPreview);
+      document.querySelectorAll('.gradient-option').forEach(opt => opt.classList.remove('selected'));
+      updatePreview();
     });
 
-    // 默认选择第一个渐变
-    gradientOptions[0].click();
+    color3Input.addEventListener('input', (e) => {
+      selectedGradient.color3 = e.target.value;
+      document.querySelectorAll('.gradient-option').forEach(opt => opt.classList.remove('selected'));
+      updatePreview();
+    });
+
+    color4Input.addEventListener('input', (e) => {
+      selectedGradient.color4 = e.target.value;
+      document.querySelectorAll('.gradient-option').forEach(opt => opt.classList.remove('selected'));
+      updatePreview();
+    });
 
     document.getElementById('create').onclick = () => {
       const title = document.getElementById('title').value;
-      const subtitle = document.getElementById('subtitle').value;
-
+      const subtitle = document.getElementById('subtitle').value || "Please enter your summary";
+      const author = document.getElementById('author').value || "Design Team";
+      
       parent.postMessage({
         pluginMessage: {
           type: 'create-gradient-cover',
-          title: title || 'Your Title',
-          subtitle: subtitle || 'Your Subtitle',
+          title,
+          subtitle,
+          author,
           color1: selectedGradient.color1,
           color2: selectedGradient.color2,
+          color3: selectedGradient.color3,
+          color4: selectedGradient.color4,
           angle: selectedGradient.angle
         }
       }, '*');
