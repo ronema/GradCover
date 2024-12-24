@@ -332,235 +332,273 @@
       }
     };
 
-    // 设置默认日期为今天
-    document.getElementById('date').valueAsDate = new Date();
-
-    // 选择渐变
-    let selectedGradient = {
-      color1: "#4ED4DC",
-      color2: "#BB4ACF",
-      color3: "#C348DB",
-      color4: "#5995DA",
-      angle: 109.6
-    };
-
-    // 40种精选渐变色组合库
-    const gradientLibrary = [
-      { color1: '#FF6B6B', color2: '#556270', color3: '#4ECDC4', color4: '#4ECDC4', angle: 45 },
-      { color1: '#F7971E', color2: '#FFD200', color3: '#FF9966', color4: '#FF9966', angle: 60 },
-      { color1: '#00C6FF', color2: '#0072FF', color3: '#0051FF', color4: '#0051FF', angle: 90 },
-      { color1: '#FC466B', color2: '#3F5EFB', color3: '#3F5EFB', color4: '#3F5EFB', angle: 120 },
-      { color1: '#A8E6CF', color2: '#DCEDC1', color3: '#FFD3B6', color4: '#FFD3B6', angle: 30 },
-      { color1: '#FFD93D', color2: '#FF8E3C', color3: '#FF4949', color4: '#FF4949', angle: 75 },
-      { color1: '#6DD5FA', color2: '#2980B9', color3: '#2980B9', color4: '#2980B9', angle: 90 },
-      { color1: '#FF5F6D', color2: '#FFC371', color3: '#FFC371', color4: '#FFC371', angle: 45 },
-      { color1: '#36D1DC', color2: '#5B86E5', color3: '#5B86E5', color4: '#5B86E5', angle: 60 },
-      { color1: '#CB356B', color2: '#BD3F32', color3: '#BD3F32', color4: '#BD3F32', angle: 90 },
-      { color1: '#1FA2FF', color2: '#12D8FA', color3: '#A6FFCB', color4: '#A6FFCB', angle: 120 },
-      { color1: '#FF0099', color2: '#493240', color3: '#493240', color4: '#493240', angle: 30 },
-      { color1: '#004FF9', color2: '#FFF94C', color3: '#FFF94C', color4: '#FFF94C', angle: 75 },
-      { color1: '#F4C4F3', color2: '#FC67FA', color3: '#FC67FA', color4: '#FC67FA', angle: 90 },
-      { color1: '#00F260', color2: '#0575E6', color3: '#0575E6', color4: '#0575E6', angle: 45 },
-      { color1: '#F857A6', color2: '#FF5858', color3: '#FF5858', color4: '#FF5858', angle: 60 },
-      { color1: '#4776E6', color2: '#8E54E9', color3: '#8E54E9', color4: '#8E54E9', angle: 90 },
-      { color1: '#FFE259', color2: '#FFA751', color3: '#FFA751', color4: '#FFA751', angle: 120 },
-      { color1: '#FF3CAC', color2: '#784BA0', color3: '#2B86C5', color4: '#2B86C5', angle: 30 },
-      { color1: '#FF9A9E', color2: '#FAD0C4', color3: '#FAD0C4', color4: '#FAD0C4', angle: 75 },
-      { color1: '#A8CABA', color2: '#5D4157', color3: '#5D4157', color4: '#5D4157', angle: 90 },
-      { color1: '#FF758C', color2: '#FF7EB3', color3: '#FF7EB3', color4: '#FF7EB3', angle: 45 },
-      { color1: '#08AEEA', color2: '#2AF598', color3: '#2AF598', color4: '#2AF598', angle: 60 },
-      { color1: '#FEE140', color2: '#FA709A', color3: '#FA709A', color4: '#FA709A', angle: 90 },
-      { color1: '#5433FF', color2: '#20BDFF', color3: '#A5FECB', color4: '#A5FECB', angle: 120 },
-      { color1: '#799F0C', color2: '#ACBB78', color3: '#ACBB78', color4: '#ACBB78', angle: 30 },
-      { color1: '#00B4DB', color2: '#0083B0', color3: '#0083B0', color4: '#0083B0', angle: 75 },
-      { color1: '#FBAB7E', color2: '#F7CE68', color3: '#F7CE68', color4: '#F7CE68', angle: 90 },
-      { color1: '#85FFBD', color2: '#FFFB7D', color3: '#FFFB7D', color4: '#FFFB7D', angle: 45 },
-      { color1: '#FF3F3F', color2: '#FF9B9B', color3: '#FF9B9B', color4: '#FF9B9B', angle: 60 },
-      { color1: '#2193B0', color2: '#6DD5ED', color3: '#6DD5ED', color4: '#6DD5ED', angle: 90 },
-      { color1: '#FFB88C', color2: '#DE6262', color3: '#DE6262', color4: '#DE6262', angle: 120 },
-      { color1: '#B2FEFA', color2: '#0ED2F7', color3: '#0ED2F7', color4: '#0ED2F7', angle: 30 },
-      { color1: '#FA8BFF', color2: '#2BD2FF', color3: '#2BFF88', color4: '#2BFF88', angle: 75 },
-      { color1: '#FF9A9E', color2: '#FECFEF', color3: '#FECFEF', color4: '#FECFEF', angle: 90 },
-      { color1: '#43E97B', color2: '#38F9D7', color3: '#38F9D7', color4: '#38F9D7', angle: 45 },
-      { color1: '#FA709A', color2: '#FEE140', color3: '#FEE140', color4: '#FEE140', angle: 60 },
-      { color1: '#4FACFE', color2: '#00F2FE', color3: '#00F2FE', color4: '#00F2FE', angle: 90 },
-      { color1: '#F83600', color2: '#F9D423', color3: '#F9D423', color4: '#F9D423', angle: 120 },
-      { color1: '#00DBDE', color2: '#FC00FF', color3: '#FC00FF', color4: '#FC00FF', angle: 30 }
-    ];
-
-    // 默认的渐变预设（使用前9个）
-    const defaultGradients = gradientLibrary.slice(0, 9);
-
-    // 从渐变库中随机选择9个不重复的渐变
-    function getRandomGradients() {
-      const shuffled = [...gradientLibrary].sort(() => 0.5 - Math.random());
-      return shuffled.slice(0, 9);
-    }
-
-    // 更新渐变预设
-    function updateGradientPresets() {
-      const gradientGrid = document.querySelector('.gradient-grid');
-      const randomGradients = getRandomGradients();
-      gradientGrid.innerHTML = '';
-      
-      randomGradients.forEach(gradient => {
-        const gradientOption = document.createElement('div');
-        gradientOption.className = 'gradient-option';
-        gradientOption.style.background = `linear-gradient(${gradient.angle}deg, 
-          ${gradient.color1}, 
-          ${gradient.color2},
-          ${gradient.color3},
-          ${gradient.color4})`;
-        gradientOption.addEventListener('click', () => {
-          document.querySelectorAll('.gradient-option').forEach(opt => opt.classList.remove('selected'));
-          gradientOption.classList.add('selected');
-          selectedGradient = gradient;
-          
-          // 更新颜色输入
-          document.getElementById('color1').value = gradient.color1;
-          document.getElementById('color2').value = gradient.color2;
-          document.getElementById('color3').value = gradient.color3;
-          document.getElementById('color4').value = gradient.color4;
-          
-          // 更新角度滑块和显示值
-          document.getElementById('angle').value = gradient.angle;
-          document.querySelector('.angle-value').textContent = `${gradient.angle}°`;
-          
-          updatePreview();
-        });
-        gradientGrid.appendChild(gradientOption);
-      });
-    }
-
-    // 添加随机按钮点击事件
-    document.getElementById('randomButton').addEventListener('click', updateGradientPresets);
-
-    // 初始化默认渐变预设
-    window.addEventListener('load', () => {
-      const gradientGrid = document.querySelector('.gradient-grid');
-      defaultGradients.forEach(gradient => {
-        const gradientOption = document.createElement('div');
-        gradientOption.className = 'gradient-option';
-        gradientOption.style.background = `linear-gradient(${gradient.angle}deg, 
-          ${gradient.color1}, 
-          ${gradient.color2},
-          ${gradient.color3},
-          ${gradient.color4})`;
-        gradientOption.addEventListener('click', () => {
-          document.querySelectorAll('.gradient-option').forEach(opt => opt.classList.remove('selected'));
-          gradientOption.classList.add('selected');
-          selectedGradient = gradient;
-          
-          // 更新颜色输入
-          document.getElementById('color1').value = gradient.color1;
-          document.getElementById('color2').value = gradient.color2;
-          document.getElementById('color3').value = gradient.color3;
-          document.getElementById('color4').value = gradient.color4;
-          
-          // 更新角度滑块和显示值
-          document.getElementById('angle').value = gradient.angle;
-          document.querySelector('.angle-value').textContent = `${gradient.angle}°`;
-          
-          updatePreview();
-        });
-        gradientGrid.appendChild(gradientOption);
-      });
-      
-      // 默认选中第一个渐变
-      const firstOption = gradientGrid.firstChild;
-      if (firstOption) {
-        firstOption.click();
+    // 等待 DOM 加载完成
+    document.addEventListener('DOMContentLoaded', function() {
+      // 初始化日期
+      const dateInput = document.getElementById('date');
+      if (dateInput) {
+        dateInput.valueAsDate = new Date();
       }
-    });
 
-    const color1Input = document.getElementById('color1');
-    const color2Input = document.getElementById('color2');
-    const color3Input = document.getElementById('color3');
-    const color4Input = document.getElementById('color4');
-    const angleInput = document.getElementById('angle');
-    const angleValue = document.querySelector('.angle-value');
-    
-    // 更新渐变预览
-    function updatePreview() {
-      const gradient = `linear-gradient(${selectedGradient.angle}deg, 
-        ${selectedGradient.color1}, 
-        ${selectedGradient.color2},
-        ${selectedGradient.color3},
-        ${selectedGradient.color4})`;
-      
-      document.querySelector('.gradient-preview').style.background = gradient;
-    }
+      // 获取必要的 DOM 元素
+      const gradientGrid = document.querySelector('.gradient-grid');
+      const color1Input = document.getElementById('color1');
+      const color2Input = document.getElementById('color2');
+      const color3Input = document.getElementById('color3');
+      const color4Input = document.getElementById('color4');
+      const angleInput = document.getElementById('angle');
+      const angleValue = document.querySelector('.angle-value');
+      const randomButton = document.getElementById('randomButton');
+      const previewElement = document.querySelector('.gradient-preview');
+      const createButton = document.getElementById('create');
+      const cancelButton = document.getElementById('cancel');
+      const titleInput = document.getElementById('title');
+      const subtitleInput = document.getElementById('subtitle');
+      const authorInput = document.getElementById('author');
 
-    // 更新角度显示
-    angleInput.addEventListener('input', (e) => {
-      selectedGradient.angle = parseInt(e.target.value);
-      angleValue.textContent = `${selectedGradient.angle}°`;
-      
-      // 更新选中的渐变预设显示
-      const selectedOption = document.querySelector('.gradient-option.selected');
-      if (selectedOption) {
-        selectedOption.style.background = `linear-gradient(${selectedGradient.angle}deg, 
+      // 选择渐变
+      let selectedGradient = {
+        color1: "#4ED4DC",
+        color2: "#BB4ACF",
+        color3: "#C348DB",
+        color4: "#5995DA",
+        angle: 109.6
+      };
+
+      // 80种精选渐变色组合库
+      const gradientLibrary = [
+        { color1: '#FF6B6B', color2: '#556270', color3: '#4ECDC4', color4: '#4ECDC4', angle: 45 },
+        { color1: '#F7971E', color2: '#FFD200', color3: '#FF9966', color4: '#FF9966', angle: 60 },
+        { color1: '#00C6FF', color2: '#0072FF', color3: '#0051FF', color4: '#0051FF', angle: 90 },
+        { color1: '#FC466B', color2: '#3F5EFB', color3: '#3F5EFB', color4: '#3F5EFB', angle: 120 },
+        { color1: '#A8E6CF', color2: '#DCEDC1', color3: '#FFD3B6', color4: '#FFD3B6', angle: 30 },
+        { color1: '#FFD93D', color2: '#FF8E3C', color3: '#FF4949', color4: '#FF4949', angle: 75 },
+        { color1: '#6DD5FA', color2: '#2980B9', color3: '#2980B9', color4: '#2980B9', angle: 90 },
+        { color1: '#FF5F6D', color2: '#FFC371', color3: '#FFC371', color4: '#FFC371', angle: 45 },
+        { color1: '#36D1DC', color2: '#5B86E5', color3: '#5B86E5', color4: '#5B86E5', angle: 60 },
+        { color1: '#CB356B', color2: '#BD3F32', color3: '#BD3F32', color4: '#BD3F32', angle: 90 },
+        { color1: '#1FA2FF', color2: '#12D8FA', color3: '#A6FFCB', color4: '#A6FFCB', angle: 120 },
+        { color1: '#FF0099', color2: '#493240', color3: '#493240', color4: '#493240', angle: 30 },
+        { color1: '#004FF9', color2: '#FFF94C', color3: '#FFF94C', color4: '#FFF94C', angle: 75 },
+        { color1: '#F4C4F3', color2: '#FC67FA', color3: '#FC67FA', color4: '#FC67FA', angle: 90 },
+        { color1: '#00F260', color2: '#0575E6', color3: '#0575E6', color4: '#0575E6', angle: 45 },
+        { color1: '#F857A6', color2: '#FF5858', color3: '#FF5858', color4: '#FF5858', angle: 60 },
+        { color1: '#4776E6', color2: '#8E54E9', color3: '#8E54E9', color4: '#8E54E9', angle: 90 },
+        { color1: '#FFE259', color2: '#FFA751', color3: '#FFA751', color4: '#FFA751', angle: 120 },
+        { color1: '#FF3CAC', color2: '#784BA0', color3: '#2B86C5', color4: '#2B86C5', angle: 30 },
+        { color1: '#FF9A9E', color2: '#FAD0C4', color3: '#FAD0C4', color4: '#FAD0C4', angle: 75 },
+        { color1: '#A8CABA', color2: '#5D4157', color3: '#5D4157', color4: '#5D4157', angle: 90 },
+        { color1: '#FF758C', color2: '#FF7EB3', color3: '#FF7EB3', color4: '#FF7EB3', angle: 45 },
+        { color1: '#08AEEA', color2: '#2AF598', color3: '#2AF598', color4: '#2AF598', angle: 60 },
+        { color1: '#FEE140', color2: '#FA709A', color3: '#FA709A', color4: '#FA709A', angle: 90 },
+        { color1: '#5433FF', color2: '#20BDFF', color3: '#A5FECB', color4: '#A5FECB', angle: 120 },
+        { color1: '#799F0C', color2: '#ACBB78', color3: '#ACBB78', color4: '#ACBB78', angle: 30 },
+        { color1: '#00B4DB', color2: '#0083B0', color3: '#0083B0', color4: '#0083B0', angle: 75 },
+        { color1: '#FBF4FB', color2: '#F7CE68', color3: '#F7CE68', color4: '#F7CE68', angle: 90 },
+        { color1: '#85FFBD', color2: '#FFFB7D', color3: '#FFFB7D', color4: '#FFFB7D', angle: 45 },
+        { color1: '#FF3F3F', color2: '#FF9B9B', color3: '#FF9B9B', color4: '#FF9B9B', angle: 60 },
+        { color1: '#2193B0', color2: '#6DD5ED', color3: '#6DD5ED', color4: '#6DD5ED', angle: 90 },
+        { color1: '#B2FEFA', color2: '#0ED2F7', color3: '#0ED2F7', color4: '#0ED2F7', angle: 30 },
+        { color1: '#FA8BFF', color2: '#2BD2FF', color3: '#2BFF88', color4: '#2BFF88', angle: 75 },
+        { color1: '#FF9A9E', color2: '#FECFEF', color3: '#FECFEF', color4: '#FECFEF', angle: 90 },
+        { color1: '#43E97B', color2: '#38F9D7', color3: '#38F9D7', color4: '#38F9D7', angle: 45 },
+        { color1: '#FA709A', color2: '#FEE140', color3: '#FEE140', color4: '#FEE140', angle: 60 },
+        { color1: '#4FACFE', color2: '#00F2FE', color3: '#00F2FE', color4: '#00F2FE', angle: 90 },
+        { color1: '#F83600', color2: '#F9D423', color3: '#F9D423', color4: '#F9D423', angle: 120 },
+        { color1: '#00DBDE', color2: '#FC00FF', color3: '#FC00FF', color4: '#FC00FF', angle: 30 },
+
+        // 新增的现代感渐变色
+        { color1: '#8EC5FC', color2: '#E0C3FC', color3: '#C2E9FB', color4: '#C2E9FB', angle: 145 },
+        { color1: '#FFDEE9', color2: '#B5FFFC', color3: '#C2E9FB', color4: '#C2E9FB', angle: 110 },
+        { color1: '#FF9A8B', color2: '#FF6A88', color3: '#FF99AC', color4: '#FF99AC', angle: 55 },
+        { color1: '#FBF4FB', color2: '#EEF1F5', color3: '#E6E9F0', color4: '#E6E9F0', angle: 135 },
+        { color1: '#A9C9FF', color2: '#FFBBEC', color3: '#F3E7E9', color4: '#F3E7E9', angle: 85 },
+        { color1: '#21D4FD', color2: '#B721FF', color3: '#21D4FD', color4: '#21D4FD', angle: 165 },
+        { color1: '#3EECAC', color2: '#EE74E1', color3: '#FF77E9', color4: '#FF77E9', angle: 45 },
+        { color1: '#FA8BFF', color2: '#2BD2FF', color3: '#2BFF88', color4: '#2BFF88', angle: 90 },
+        { color1: '#FBDA61', color2: '#FF5ACD', color3: '#FF5ACD', color4: '#FF5ACD', angle: 120 },
+        { color1: '#4158D0', color2: '#C850C0', color3: '#FFCC70', color4: '#FFCC70', angle: 30 },
+        { color1: '#0093E9', color2: '#80D0C7', color3: '#80D0C7', color4: '#80D0C7', angle: 160 },
+        { color1: '#8BC6EC', color2: '#9599E2', color3: '#9599E2', color4: '#9599E2', angle: 135 },
+        { color1: '#A9C9FF', color2: '#FFBBEC', color3: '#FFBBEC', color4: '#FFBBEC', angle: 45 },
+        { color1: '#FAD961', color2: '#F76B1C', color3: '#F76B1C', color4: '#F76B1C', angle: 140 },
+        { color1: '#F4D03F', color2: '#16A085', color3: '#16A085', color4: '#16A085', angle: 105 },
+        { color1: '#00DBDE', color2: '#FC00FF', color3: '#FC00FF', color4: '#FC00FF', angle: 90 },
+        { color1: '#FEE140', color2: '#FA709A', color3: '#FA709A', color4: '#FA709A', angle: 75 },
+        { color1: '#0BA360', color2: '#3CBA92', color3: '#3CBA92', color4: '#3CBA92', angle: 145 },
+        { color1: '#FBAB7E', color2: '#F7CE68', color3: '#F7CE68', color4: '#F7CE68', angle: 130 },
+        { color1: '#85FFBD', color2: '#FFFB7D', color3: '#FFFB7D', color4: '#FFFB7D', angle: 45 },
+
+        // 高端商务风格渐变
+        { color1: '#141E30', color2: '#243B55', color3: '#243B55', color4: '#243B55', angle: 145 },
+        { color1: '#2C3E50', color2: '#3498DB', color3: '#3498DB', color4: '#3498DB', angle: 165 },
+        { color1: '#000046', color2: '#1CB5E0', color3: '#1CB5E0', color4: '#1CB5E0', angle: 120 },
+        { color1: '#0F2027', color2: '#203A43', color3: '#2C5364', color4: '#2C5364', angle: 90 },
+        { color1: '#373B44', color2: '#4286F4', color3: '#4286F4', color4: '#4286F4', angle: 145 },
+        { color1: '#283048', color2: '#859398', color3: '#859398', color4: '#859398', angle: 115 },
+        { color1: '#24C6DC', color2: '#514A9D', color3: '#514A9D', color4: '#514A9D', angle: 155 },
+        { color1: '#42275A', color2: '#734B6D', color3: '#734B6D', color4: '#734B6D', angle: 135 },
+        { color1: '#BBD2C5', color2: '#536976', color3: '#292E49', color4: '#292E49', angle: 145 },
+        { color1: '#304352', color2: '#D7D2CC', color3: '#D7D2CC', color4: '#D7D2CC', angle: 125 },
+
+        // 柔和自然风格
+        { color1: '#DCE35B', color2: '#45B649', color3: '#45B649', color4: '#45B649', angle: 135 },
+        { color1: '#C6FFDD', color2: '#FBD786', color3: '#F7797D', color4: '#F7797D', angle: 120 },
+        { color1: '#2BC0E4', color2: '#EAECC6', color3: '#EAECC6', color4: '#EAECC6', angle: 145 },
+        { color1: '#134E5E', color2: '#71B280', color3: '#71B280', color4: '#71B280', angle: 155 },
+        { color1: '#FDC830', color2: '#F37335', color3: '#F37335', color4: '#F37335', angle: 145 },
+        { color1: '#00B09B', color2: '#96C93D', color3: '#96C93D', color4: '#96C93D', angle: 90 },
+        { color1: '#FFEFBA', color2: '#FFFFFF', color3: '#FFFFFF', color4: '#FFFFFF', angle: 125 },
+        { color1: '#DAE2F8', color2: '#D6A4A4', color3: '#D6A4A4', color4: '#D6A4A4', angle: 135 },
+        { color1: '#F3904F', color2: '#3B4371', color3: '#3B4371', color4: '#3B4371', angle: 145 },
+        { color1: '#67B26F', color2: '#4CA2CD', color3: '#4CA2CD', color4: '#4CA2CD', angle: 115 }
+      ];
+
+      // 默认的渐变预设（使用前9个）
+      const defaultGradients = gradientLibrary.slice(0, 9);
+
+      // 从渐变库中随机选择9个不重复的渐变
+      function getRandomGradients() {
+        const shuffled = [...gradientLibrary].sort(() => 0.5 - Math.random());
+        return shuffled.slice(0, 9);
+      }
+
+      // 更新渐变预设
+      function updateGradientPresets() {
+        if (!gradientGrid) return;
+        
+        const randomGradients = getRandomGradients();
+        gradientGrid.innerHTML = '';
+        
+        randomGradients.forEach(gradient => {
+          const gradientOption = document.createElement('div');
+          gradientOption.className = 'gradient-option';
+          gradientOption.style.background = `linear-gradient(${gradient.angle}deg, 
+            ${gradient.color1}, 
+            ${gradient.color2},
+            ${gradient.color3},
+            ${gradient.color4})`;
+          
+          gradientOption.addEventListener('click', () => {
+            document.querySelectorAll('.gradient-option').forEach(opt => opt.classList.remove('selected'));
+            gradientOption.classList.add('selected');
+            selectedGradient = gradient;
+            
+            // 更新颜色输入
+            if (color1Input) color1Input.value = gradient.color1;
+            if (color2Input) color2Input.value = gradient.color2;
+            if (color3Input) color3Input.value = gradient.color3;
+            if (color4Input) color4Input.value = gradient.color4;
+            
+            // 更新角度滑块和显示值
+            if (angleInput) angleInput.value = gradient.angle;
+            if (angleValue) angleValue.textContent = `${gradient.angle}°`;
+            
+            updatePreview();
+          });
+          
+          gradientGrid.appendChild(gradientOption);
+        });
+      }
+
+      // 更新预览
+      function updatePreview() {
+        if (!previewElement || !selectedGradient) return;
+        
+        previewElement.style.background = `linear-gradient(${selectedGradient.angle}deg, 
           ${selectedGradient.color1}, 
           ${selectedGradient.color2},
           ${selectedGradient.color3},
           ${selectedGradient.color4})`;
       }
-      
-      updatePreview();
-    });
-    
-    // 监听自定义颜色变化
-    color1Input.addEventListener('input', (e) => {
-      selectedGradient.color1 = e.target.value;
-      document.querySelectorAll('.gradient-option').forEach(opt => opt.classList.remove('selected'));
-      updatePreview();
-    });
 
-    color2Input.addEventListener('input', (e) => {
-      selectedGradient.color2 = e.target.value;
-      document.querySelectorAll('.gradient-option').forEach(opt => opt.classList.remove('selected'));
-      updatePreview();
-    });
+      // 添加事件监听器
+      if (randomButton) {
+        randomButton.addEventListener('click', updateGradientPresets);
+      }
 
-    color3Input.addEventListener('input', (e) => {
-      selectedGradient.color3 = e.target.value;
-      document.querySelectorAll('.gradient-option').forEach(opt => opt.classList.remove('selected'));
-      updatePreview();
-    });
+      if (angleInput && angleValue) {
+        angleInput.addEventListener('input', (e) => {
+          selectedGradient.angle = parseInt(e.target.value);
+          angleValue.textContent = `${selectedGradient.angle}°`;
+          
+          // 更新选中的渐变预设显示
+          const selectedOption = document.querySelector('.gradient-option.selected');
+          if (selectedOption) {
+            selectedOption.style.background = `linear-gradient(${selectedGradient.angle}deg, 
+              ${selectedGradient.color1}, 
+              ${selectedGradient.color2},
+              ${selectedGradient.color3},
+              ${selectedGradient.color4})`;
+          }
+          
+          updatePreview();
+        });
+      }
 
-    color4Input.addEventListener('input', (e) => {
-      selectedGradient.color4 = e.target.value;
-      document.querySelectorAll('.gradient-option').forEach(opt => opt.classList.remove('selected'));
-      updatePreview();
-    });
+      // 颜色输入事件监听
+      const colorInputs = [
+        { input: color1Input, prop: 'color1' },
+        { input: color2Input, prop: 'color2' },
+        { input: color3Input, prop: 'color3' },
+        { input: color4Input, prop: 'color4' }
+      ];
 
-    document.getElementById('create').onclick = () => {
-      const title = document.getElementById('title').value;
-      const subtitle = document.getElementById('subtitle').value || "Please enter your summary";
-      const author = document.getElementById('author').value || "Design Team";
-      
-      parent.postMessage({
-        pluginMessage: {
-          type: 'create-gradient-cover',
-          title,
-          subtitle,
-          author,
-          color1: selectedGradient.color1,
-          color2: selectedGradient.color2,
-          color3: selectedGradient.color3,
-          color4: selectedGradient.color4,
-          angle: selectedGradient.angle
+      colorInputs.forEach(({input, prop}) => {
+        if (input) {
+          input.addEventListener('input', (e) => {
+            selectedGradient[prop] = e.target.value;
+            updatePreview();
+          });
         }
-      }, '*');
-    };
+      });
 
-    document.getElementById('cancel').onclick = () => {
-      parent.postMessage({
-        pluginMessage: {
-          type: 'cancel'
-        }
-      }, '*');
-    };
+      // 创建封面按钮点击事件
+      if (createButton) {
+        createButton.onclick = () => {
+          const title = titleInput ? titleInput.value : '';
+          const subtitle = (subtitleInput && subtitleInput.value) || "Please enter your summary";
+          const author = (authorInput && authorInput.value) || "Design Team";
+          
+          if (!title || title.trim() === '') {
+            // 显示错误消息
+            if (titleInput) {
+              titleInput.style.borderColor = '#FF0000';
+            }
+            return;
+          }
+
+          parent.postMessage({
+            pluginMessage: {
+              type: 'create-gradient-cover',
+              title,
+              subtitle,
+              author,
+              color1: selectedGradient.color1,
+              color2: selectedGradient.color2,
+              color3: selectedGradient.color3,
+              color4: selectedGradient.color4,
+              angle: selectedGradient.angle
+            }
+          }, '*');
+        };
+      }
+
+      // 取消按钮点击事件
+      if (cancelButton) {
+        cancelButton.onclick = () => {
+          parent.postMessage({
+            pluginMessage: {
+              type: 'cancel'
+            }
+          }, '*');
+        };
+      }
+
+      // 初始化
+      updateGradientPresets();
+      updatePreview();
+    });
   </script>
 </body>
 </html>
